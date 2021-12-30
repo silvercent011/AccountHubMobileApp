@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --animate-duration: 400ms;
+  --animate-delay: 0.1s;
+}
+
+input {
+  @apply w-full flex-grow;
+  @apply rounded-t-xl border-b-4 border-ah-darken-blue text-ah-darken-blue text-xl;
+  @apply focus:border-ah-red focus:text-ah-red;
+  @apply font-roboto font-light outline-none;
+  @apply py-4 px-5 my-3;
+  transition: all 0.3s ease
+}
+
+.full {
+  @apply w-full flex-grow;
+  @apply rounded-xl border-2 border-ah-darken-blue text-ah-darken-blue text-xl;
+  @apply focus:border-ah-red focus:text-ah-red;
+  @apply font-roboto font-normal outline-none;
+  @apply py-4 px-5 my-3;
+  transition: all 0.3s ease
+}
+
+.page {
+  @apply bg-ah-blue text-white;
+  @apply h-screen ;
+  @apply flex flex-col items-center justify-center;
+}
+
+.page-lighten {
+  @apply bg-ah-lighten-blue text-ah-darken-blue;
+  @apply min-h-screen max-h-fit overflow-y-scroll ;
+  @apply flex flex-col items-center justify-center;
+}
+
+.page-darken {
+  @apply bg-ah-darken-blue text-ah-lighten-blue;
+  @apply min-h-screen max-h-fit overflow-y-scroll ;
+  @apply flex flex-col items-center justify-center;
+}
+
+.actionButton {
+  @apply text-white bg-ah-red outline-none select-none;
+  @apply  flex-grow p-5 rounded-2xl;
+  @apply font-fredoka text-2xl;
+  
+  @apply hover:shadow-2xl hover:shadow-ah-red;
+  @apply selection:shadow-2xl selection:shadow-ah-red;
+  transition: all 0.3s ease
+}
+
+.subActionButton {
+  @apply text-white bg-ah-red outline-none select-none;
+  @apply  flex-grow p-2 rounded-xl;
+  @apply font-fredoka text-xl;
+  
+  @apply hover:shadow-2xl hover:shadow-ah-red;
+  @apply selection:shadow-2xl selection:shadow-ah-red;
+  transition: all 0.3s ease
+}
+
+.subActionButton:disabled {
+  @apply text-white bg-ah-red outline-none select-none opacity-70;
+  @apply  flex-grow p-2 rounded-xl;
+  @apply font-fredoka text-xl;
+}
+
+
+.card {
+  @apply select-none  m-3 py-10 px-6 rounded-xl;
+  @apply bg-ah-darken-blue text-white shadow-2xl
+}
+
+.card-title {
+  @apply font-fredoka text-3xl;
+}
+
+.card-text {
+  @apply font-roboto font-normal text-lg;
+}
