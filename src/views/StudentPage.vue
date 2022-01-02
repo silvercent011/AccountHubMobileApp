@@ -63,7 +63,7 @@ export default defineComponent({
             }
         });
         const distribution = store.state.distribution.find((aluno: any) => {
-            if (aluno._id === thisRoute.params.id) {
+            if (aluno.matricula === thisRoute.params.id) {
                 return aluno;
             }
         });
