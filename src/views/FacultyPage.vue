@@ -1,7 +1,7 @@
 <template>
 <div>
 
-  <button @click="voltar" class="fixed w-12 h-12 bg-ah-medium-blue top-2 left-2 rounded-full shadow-2xl">
+  <button @click="voltar" class="fixed w-12 h-12 bg-ah-medium-blue top-auto left-2 rounded-full shadow-2xl">
       <i :class="`text-ah-darken-blue fas fa-chevron-left fa-xl text-2xl`"></i>
   </button>
   <div class="animate__slideInRight flex page-darken w-full">
