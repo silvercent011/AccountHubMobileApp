@@ -6,3 +6,4 @@ dist-ssr
 android
 .env
 capacitor.config.ts
+releases

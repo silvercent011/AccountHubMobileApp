@@ -9,6 +9,16 @@
   --animate-delay: 0.1s;
 }
 
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll; 
+}
+
+body::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
 input {
   @apply w-full flex-grow;
   @apply rounded-t-xl border-b-4 border-ah-darken-blue text-ah-darken-blue text-xl;
@@ -35,14 +45,19 @@ input {
 
 .page-lighten {
   @apply bg-ah-lighten-blue text-ah-darken-blue;
-  @apply min-h-screen max-h-fit overflow-y-scroll ;
+  @apply min-h-screen max-h-fit;
   @apply flex flex-col items-center justify-center;
 }
 
 .page-darken {
   @apply bg-ah-darken-blue text-ah-lighten-blue;
-  @apply min-h-screen max-h-fit overflow-y-scroll ;
+  @apply min-h-screen max-h-fit;
   @apply flex flex-col items-center justify-center;
+}
+
+.page-darken-row {
+  @apply bg-ah-darken-blue text-ah-lighten-blue;
+  @apply min-h-screen max-h-fit ;
 }
 
 .actionButton {
