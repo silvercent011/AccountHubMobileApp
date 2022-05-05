@@ -1,7 +1,5 @@
-import { createHash } from "crypto";
-import { createRouter, createWebHashHistory } from "vue-router";
-import { RouteRecordRaw  } from "vue-router";
-import { store } from "../store";
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { useUserStore } from "../stores/user";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -13,10 +11,10 @@ const routes: Array<RouteRecordRaw> = [
         path: '/app',
         component: () => import('../views/MainPage.vue'),
         children: [
-            {path:"", name: "Home", component: () => import('../views/MainRoutes/Home.vue')},
-            {path:"/students", name: "Students", component: () => import('../views/MainRoutes/Students.vue')},
-            {path:"/facultyes", name: "Facultyes", component: () => import('../views/MainRoutes/Facultyes.vue')},
-            {path:"/settings", name: "Settings", component: () => import('../views/MainRoutes/Settings.vue')},
+            { path: "", name: "Home", component: () => import('../views/MainRoutes/Home.vue') },
+            { path: "/students", name: "Students", component: () => import('../views/MainRoutes/Students.vue') },
+            { path: "/facultyes", name: "Facultyes", component: () => import('../views/MainRoutes/Facultyes.vue') },
+            { path: "/settings", name: "Settings", component: () => import('../views/MainRoutes/Settings.vue') },
         ]
     },
     {
@@ -34,14 +32,19 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 export const router = createRouter({
-    // history: createWebHistory(),
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes
 })
 
-router.beforeEach((to, from, next) => {
-    if (to.name !== 'Login' && !store.state.userData.token) {
-        next({name:"Login"})
+router.beforeEach(async (to, from, next) => {
+    const userStore = useUserStore()
+
+    if (!userStore.userData.token) {
+        await userStore.fetchTokenFromStorage()
     }
-    next()
+    if (to.name !== 'Login' && !userStore.userData.token) {
+        next({ name: "Login" })
+    } else {
+        next()
+    }
 })

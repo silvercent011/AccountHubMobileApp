@@ -1,3 +1,33 @@
+<script lang="ts" setup>
+import { computed, ref } from "vue";
+import StudentCard from "../../components/StudentCard.vue";
+import unidecode from "unidecode";
+import { iStudent, useStudentsStore } from "../../stores/students";
+const typeAheadQuery = ref("");
+
+const studentStore = useStudentsStore()
+const filtered = computed<Array<iStudent>>(function (): Array<iStudent> {
+  if (typeAheadQuery.value != "") {
+    return studentStore.students.filter((student: any) => {
+      if (
+        (unidecode(student.nome)
+          .toLowerCase()
+          .includes(unidecode(typeAheadQuery.value.toLowerCase())) &&
+          typeAheadQuery.value != "" &&
+          typeAheadQuery.value.length > 2) ||
+        student.matricula.includes(typeAheadQuery.value.toLowerCase())
+      ) {
+        return student;
+      }
+    });
+  } else {
+    return [];
+  }
+});
+
+</script>
+
+
 <template>
   <div class="w-full">
     <header class="h-20 top-0 z-50">
@@ -19,37 +49,3 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-import { useStore } from "vuex";
-import StudentCard from "../../components/StudentCard.vue";
-import unidecode from "unidecode";
-export default defineComponent({
-  setup() {
-    const typeAheadQuery = ref("");
-
-    const store = useStore();
-    const filtered = computed(() => {
-      if (typeAheadQuery.value != "") {
-        return store.state.students.filter((student: any) => {
-          if (
-            (unidecode(student.nome)
-              .toLowerCase()
-              .includes(unidecode(typeAheadQuery.value.toLowerCase())) &&
-              typeAheadQuery.value != "" &&
-              typeAheadQuery.value.length > 2) ||
-            student.matricula.includes(typeAheadQuery.value.toLowerCase())
-          ) {
-            return student;
-          }
-        });
-      } else {
-        return {};
-      }
-    });
-
-    return { typeAheadQuery, filtered };
-  },
-  components: { StudentCard },
-});
-</script>
