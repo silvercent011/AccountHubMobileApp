@@ -40,19 +40,19 @@ input {
 .page {
   @apply bg-ah-blue text-white;
   @apply h-screen ;
-  @apply flex flex-col items-center justify-center;
+  @apply flex flex-col items-center justify-start;
 }
 
 .page-lighten {
   @apply bg-ah-lighten-blue text-ah-darken-blue;
   @apply min-h-screen max-h-fit;
-  @apply flex flex-col items-center justify-center;
+  @apply flex flex-col items-center justify-start;
 }
 
 .page-darken {
   @apply bg-ah-darken-blue text-ah-lighten-blue;
   @apply min-h-screen max-h-fit;
-  @apply flex flex-col items-center justify-center;
+  @apply flex flex-col items-center justify-start;
 }
 
 .page-darken-row {
@@ -62,7 +62,7 @@ input {
 
 .actionButton {
   @apply text-white bg-ah-red outline-none select-none;
-  @apply  flex-grow p-5 rounded-2xl;
+  @apply  flex-grow py-3 rounded-2xl;
   @apply font-fredoka text-2xl;
   
   @apply hover:shadow-2xl hover:shadow-ah-red;

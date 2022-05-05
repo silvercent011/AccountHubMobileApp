@@ -1,47 +1,36 @@
+<script lang="ts" setup>
+import { reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
+
+const route = useRoute();
+const router = useRouter();
+const optRoutes = reactive([
+  { name: "Home", title: "Inicio", icon: "fa-home" },
+  { name: "Students", title: "Alunos", icon: "fa-user-graduate" },
+  { name: "Facultyes", title: "Prof.", icon: "fa-chalkboard-teacher" },
+  { name: "Settings", title: "Config.", icon: "fa-cog" },
+]);
+
+function verifyRouter(routerName: string) {
+  if (route.name === routerName) {
+    return true;
+  }
+}
+
+function toRoute(routeName: string) {
+  router.push({ name: routeName });
+}
+
+</script>
+
 <template>
   <ul class="bar">
-    <li
-      @click="toRoute(route.name)"
-      class="text-center"
-      :class="{ selected: verifyRouter(route.name) }"
-      v-for="(route, index) in optRoutes"
-      :key="index"
-    >
+    <li @click="toRoute(route.name)" class="text-center" :class="{ selected: verifyRouter(route.name) }" v-for="(route, index) in optRoutes" :key="index">
       <i :class="`fas ${route.icon} fa-xl`"></i>
       <p>{{ route.title }}</p>
     </li>
   </ul>
 </template>
-
-<script lang="ts">
-import { defineComponent, reactive } from "vue";
-import { useRoute, useRouter } from "vue-router";
-
-export default defineComponent({
-  setup() {
-    const route = useRoute();
-    const router = useRouter();
-    const optRoutes = reactive([
-      { name: "Home", title: "Inicio", icon: "fa-home" },
-      { name: "Students", title: "Alunos", icon: "fa-user-graduate" },
-      { name: "Facultyes", title: "Prof.", icon: "fa-chalkboard-teacher" },
-      { name: "Settings", title: "Config.", icon: "fa-cog" },
-    ]);
-
-    function verifyRouter(routerName: string) {
-      if (route.name === routerName) {
-        return true;
-      }
-    }
-
-    function toRoute(routeName: string) {
-      router.push({ name: routeName });
-    }
-
-    return { optRoutes, verifyRouter, toRoute };
-  },
-});
-</script>
 
 <style>
 .bar {
